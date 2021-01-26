@@ -1,0 +1,14 @@
+body{
+    margin: 0;
+}
+
+#header{
+    padding: 1em 3em;
+    background-color: dimgrey;
+}
+#header span{
+    font-size: x-large;
+    font-family: Play;
+    font-weight: bold;
+    color: ghostwhite;
+}
