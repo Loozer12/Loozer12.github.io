@@ -50,8 +50,10 @@
 		
 		_btnAnimation(name)
 		{
-			$(`#btn_${name}`).fadeOut();
-			$(`#btn_${name}`).fadeIn();
+			$(`#btn_${name}`).css('background-color','#00000066');
+			setTimeout(()=>{
+				$(`#btn_${name}`).css('background-color','');
+			},100);
 		}
 
 		btnPressNum(num) {
