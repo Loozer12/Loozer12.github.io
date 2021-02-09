@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    background: url(https://putyourfarmonthemap.com/wp-content/uploads/2018/02/Types-Of-Hardwood-Floors-Pictures-Solid.jpg);
 }
 
 #header{
@@ -11,4 +12,95 @@ body{
     font-family: Play;
     font-weight: bold;
     color: ghostwhite;
+}
+
+.calc_btn{
+	margin: 5px;
+}
+
+.btnContainer, .row{
+	padding:0;
+	margin:0;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.btnContainer .btn{
+	padding-bottom: 1em;
+}
+
+.main{
+	margin-left: auto;
+    margin-right: auto;
+	width: fit-content;
+    background-color: #363132;
+	padding: 20px;
+}
+.main .row{
+	width: fit-content;
+}
+
+.btn{
+	width: 80%;
+	height:80%;
+	color: black;
+	background-color: #b5b2b3;
+	padding: 0;
+	margin: 0.2em;
+}
+
+.btn:active {
+	background-color: #797979;
+}
+
+.btn:hover{
+	box-shadow: 0px 0px 11px 1px grey inset;
+}
+
+#textMemory{
+	text-align: left;
+	color: white;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#textOperation{
+	text-align: left;
+	color: white;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.nrmBtn{
+	height: 2.5em;
+	width: 5em;
+	padding-top: 0.35em;
+}
+
+.wideBtn{
+	height: 2.5em;
+	width: 10.4em;
+	padding-top: 0.35em;
+}
+
+.highBtn{
+	height: 5.4em;
+	width: 5em;
+	padding-top: 0.35em;
+}
+
+#window{
+	width: 100%;
+	font-size: 2.5rem;
+    text-align: right;
+    letter-spacing: 0.2em;
+}
+
+.row100{
+	width: 100% !important;
+}
+
+#calc_cont{
+	margin: 5em 0;
 }
