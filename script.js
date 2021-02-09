@@ -10,7 +10,7 @@
 	
 	_btnAnimation(name)
 	{
-		$(`#btn${name}`).css('background-color','#00000066');
+		$(`#btn${name}`).css('background-color','#797979');
 		setTimeout(()=>{
 			$(`#btn${name}`).css('background-color','');
 		},100);
