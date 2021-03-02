@@ -8,6 +8,8 @@
 	isEnd = false;
 	notation = "DEC";
 	maxLen = 12;
+	memNum = "";
+	hexInput="";
 	
 	constructor()
 	{
@@ -23,6 +25,8 @@
 		Math.ctan = (x) => { 
 			return 1 / Math.tan(x); 
 		}
+
+		this.updateNotation();
 	}
 	
 	updateInput()
@@ -40,9 +44,11 @@
 			}else{
 				viewNum = this["number" + this.numberNow];
 			}
+			
 		}
 		else if(this.result!= NaN && this.result != Infinity)
 		{
+			
 			if(this.result==0){
 				viewNum = "0";
 			}else if(Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
@@ -55,10 +61,13 @@
 			}
 		}
 
-		if(this.notation == "HEX")
-			viewNum = "neDopilil";
-
 		this["number" + this.numberNow] = "" + viewNum;
+
+		if(this.notation == "HEX"){
+			this["number" + this.numberNow] = this.normalFloor(this["number" + this.numberNow]);
+			viewNum = this.toHex(viewNum).toUpperCase();
+		}
+
 		$("#window").val(viewNum);
 	}
 
@@ -66,7 +75,36 @@
 		if(this.methodNow == null && mode!="noClear"){
 			$("#memAction")[0].innerText = "";
 		}else{
-			$("#memAction")[0].innerText = this.roundNum((+this.number1).toString()) + " " + this.methodNow;
+			let num = this.roundNum((+this.number1).toString());
+			if(this.notation == "HEX")
+				num = this.toHex(num);
+			$("#memAction")[0].innerText = num + " " + this.methodNow;
+		}
+	}
+
+	updateMemNum(){
+		if(this.memNum == ""){
+			$("#memNum")[0].innerText = "";
+		}else{
+			let num = this.roundNum((+this.memNum).toString());
+			if(this.notation == "HEX")
+				num = this.toHex(num);
+			$("#memNum")[0].innerText = num;
+		}
+	}
+
+	updateNotation(){
+		if(this.notation=="DEC"){
+			$("#decSpan").css("font-weight","bold");
+			$("#hexSpan").css("font-weight","");
+			$(".notHex").removeClass("disabled");
+			$(".btnLet").addClass("disabled");
+		}
+		else{
+			$("#decSpan").css("font-weight","");
+			$("#hexSpan").css("font-weight","bold");
+			$(".notHex").addClass("disabled");
+			$(".btnLet").removeClass("disabled");
 		}
 	}
 
@@ -118,15 +156,25 @@
 
 		if(this["number" + this.numberNow].length - (this["number"+this.numberNow].indexOf(".")==-1?0:1) < this.maxLen)
 		{
-			if(!isNaN(Number(num)))
+			let number = Number(num);
+			if(!isNaN(number))
 			{
-				let number = Number(num);
 				this._btnAnimation(number);
 				
-				if(this["number" + this.numberNow]==0 && this["number" + this.numberNow].toString().indexOf(".")==-1){
-					this["number" + this.numberNow] = "" +  number;
+				if(this.notation=="DEC"){
+					if(this["number" + this.numberNow]=="0" && this["number" + this.numberNow].toString().indexOf(".")==-1){
+						this["number" + this.numberNow] = "" +  number;
+					}else{
+						this["number" + this.numberNow] = this["number" + this.numberNow] + "" + number;
+					}
 				}else{
-					this["number" + this.numberNow] = this["number" + this.numberNow] + "" + number;
+					this.hexInput = this.toHex(this["number" + this.numberNow]);
+					if(this.hexInput=="0"){
+						this.hexInput = "" + number;
+					}else{
+						this.hexInput = this.hexInput + "" + number;
+					}
+					this["number" + this.numberNow] = this.toDec(this.hexInput);
 				}
 				
 				this.updateInput();
@@ -203,7 +251,9 @@
 		this.number2 = "0";
 		this.methodNow = null;
 		this.result = null;
-		
+		this.memNum = "";
+
+		this.updateMemNum();
 		this.updateInput();
 	}
 	
@@ -841,6 +891,121 @@
 			
 	}
 
+	btnPressMemory(){
+		if(this.memNum == ""){
+			//this["number" + this.numberNow] = "0";
+			return;
+		}
+		else{
+			this["number" + this.numberNow] = this.memNum;
+		}
+		
+		this.updateInput();
+	}
+
+	btnPressMemoryPlus(){
+		this.memNum = this["number" + this.numberNow];
+		this.updateMemNum();
+	}
+
+	btnPressMemoryMinus(){
+		this.memNum = "";
+		this.updateMemNum();
+	}
+
+	btnPressLet(_let){
+		this.checkRules();
+
+		if(this["number" + this.numberNow].length - (this["number"+this.numberNow].indexOf(".")==-1?0:1) < this.maxLen)
+		{
+			if(true)
+			{ 
+				this._btnAnimation(_let);
+				
+				if(this.notation=="DEC"){
+					return;
+				}else{
+					this.hexInput = this.toHex(this["number" + this.numberNow]);
+					if(this.hexInput=="0"){
+						this.hexInput = "" + _let;
+					}else{
+						this.hexInput = this.hexInput + "" + _let;
+					}
+					this["number" + this.numberNow] = this.toDec(this.hexInput);
+				}
+				
+				this.updateInput();
+			}
+			else
+			{
+				console.error("Func name: btnPressNum\n\nError: var num - is not number");
+			}
+		}
+		else
+		{
+			console.info(`Func name: btnPressNum\n\nInfo: var number${this.numberNow} - length more than ${this.maxLen}`);
+		}
+	}
+
+	btnPressTranslate(){
+		if(this.notation=="DEC"){
+			this.notation="HEX";
+			if(!this.isHexMethodNow()){
+				this.number1 = this["number" + this.numberNow];
+				this.numberNow = 1;
+				this.number2 = "0";
+				this.methodNow = null;
+				this.result = null;
+
+				this.updateMemNum();
+				this.updateInput();
+			}
+			this.number1 = this.normalFloor(this.number1);
+			this.number2 = this.normalFloor(this.number2);
+			this.memNum = this.normalFloor(this.memNum);
+			if(this.result!=null) this.result = this.normalFloor(this.result);
+
+		}else{
+			this.notation="DEC";
+			this.number1 = this.normalFloor(this.number1);
+			this.number2 = this.normalFloor(this.number2);
+			this.memNum = this.normalFloor(this.memNum);
+			if(this.result!=null) this.result = this.normalFloor(this.result);
+		}
+		this.updateNotation();
+		this.updateInput();
+		this.updateMemNum();
+	}
+
+	isHexMethodNow(){
+		return this.methodNow=="+"||this.methodNow=="-"||this.methodNow=="*"||this.methodNow=="/";
+	}
+
+	toHex(strNum){
+		if(strNum==""){
+			return "";
+		}else{
+			strNum=this.normalFloor(strNum);
+			return (+strNum).toString(16).toUpperCase();
+		}
+	}
+
+	toDec(strNum){
+		if(strNum==""){
+			return "";
+		}else{
+			return parseInt(strNum,16).toString();
+		}	    
+	}
+
+	normalFloor(strNum){
+		if(strNum==""){
+			return "";
+		}else{
+			return (+strNum)>=0?(Math.floor(+strNum)).toString():(Math.ceil(+strNum)).toString();
+		}
+	}
+
 	noExp(num){
 		if(Math.abs(num)<1){
 			if(num.toString().indexOf("e")>=0){
@@ -940,6 +1105,7 @@ $(".btnNum").click((e)=>{
 });
 
 $("#btnComma").click((e)=>{
+	if($("#btnComma").hasClass("disabled"))return;
 	Calc.btnPressDot();
 });
 
@@ -980,67 +1146,106 @@ $("#btnCleanEntry").click((e)=>{
 });
 
 $("#btnSqrtXY").click((e)=>{
+	if($("#btnSqrtXY").hasClass("disabled"))return;
 	Calc.btnPressSqrtXY();
 });
 
 $("#btnSqrtX2").click((e)=>{
+	if($("#btnSqrtX2").hasClass("disabled"))return;
 	Calc.btnPressSqrtX2();
 });
 
 $("#btnSqrtX3").click((e)=>{
+	if($("#btnSqrtX3").hasClass("disabled"))return;
 	Calc.btnPressSqrtX3();
 });
 
 $("#btnArcsin").click((e)=>{
+	if($("#btnArcsin").hasClass("disabled"))return;
 	Calc.btnPressArcsin();
 });
 
 $("#btnArccos").click((e)=>{
+	if($("#btnArccos").hasClass("disabled"))return;
 	Calc.btnPressArccos();
 });
 
 $("#btnArctg").click((e)=>{
+	if($("#btnArctg").hasClass("disabled"))return;
 	Calc.btnPressArctg();
 });
 
 $("#btnArcctg").click((e)=>{
+	if($("#btnArcctg").hasClass("disabled"))return;
 	Calc.btnPressArcctg();
 });
 
 $("#btnSin").click((e)=>{
+	if($("#btnSin").hasClass("disabled"))return;
 	Calc.btnPressSin();
 });
 
 $("#btnCos").click((e)=>{
+	if($("#btnCos").hasClass("disabled"))return;
 	Calc.btnPressCos();
 });
 
 $("#btnTg").click((e)=>{
+	if($("#btnTg").hasClass("disabled"))return;
 	Calc.btnPressTg();
 });
 
 $("#btnCtg").click((e)=>{
+	if($("#btnCtg").hasClass("disabled"))return;
 	Calc.btnPressCtg();
 });
 
 $("#btnDiv").click((e)=>{
+	if($("#btnDiv").hasClass("disabled"))return;
 	Calc.btnPressDiv();
 });
 
 $("#btnMod").click((e)=>{
+	if($("#btnMod").hasClass("disabled"))return;
 	Calc.btnPressMod();
 });
 
 $("#btnPowerXY").click((e)=>{
+	if($("#btnPowerXY").hasClass("disabled"))return;
 	Calc.btnPressPowerXY();
 });
 
 $("#btnPowerX2").click((e)=>{
+	if($("#btnPowerX2").hasClass("disabled"))return;
 	Calc.btnPressPowerX2();
 });
 
 $("#btnPowerX-1").click((e)=>{
+	if($("#btnPowerX-1").hasClass("disabled"))return;
 	Calc.btnPressPowerXm1();
 });
+
+$("#btnMemory").click((e)=>{
+	Calc.btnPressMemory();
+});
+
+$("#btnMemoryPlus").click((e)=>{
+	Calc.btnPressMemoryPlus();
+});
+
+$("#btnMemoryMinus").click((e)=>{
+	Calc.btnPressMemoryMinus();
+});
+
+$(".btnLet").click((e)=>{
+	if($(".btnLet").hasClass("disabled"))return;
+	let _let = e.currentTarget.dataset.let;
+	Calc.btnPressLet(_let);
+});
+
+$("#btnTranslate").click((e)=>{
+	Calc.btnPressTranslate();
+});
+
 
 
