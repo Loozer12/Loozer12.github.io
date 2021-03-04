@@ -921,7 +921,7 @@
 			break;
 		}
 
-		this.curHist += this.convNotation(this.number1) + " " + this.methodNow + " " + this.convNotation(this.number2) +  " = " + this.convNotation(this.result) + "\n";
+		this.curHist += this.notation=="DEC"?"":"(hex) " + this.convNotation(this.number1) + " " + this.methodNow + " " + this.convNotation(this.number2) +  " = " + this.convNotation(this.result) + "\n";
 		/*this.histN2 = "";
 		if(mode!="clear"){
 			this.curHist += " = " + this.result;
