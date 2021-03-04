@@ -23,8 +23,8 @@
 	        <div class="nrmBtn btn float-right" id="btnHistory">История</div></div>
 	    </div>
 		<!-- Калькулятор -->
-		<div class="main">
-			
+		<div class = "row" id = calc_body>
+			<div class="main">
 				<!-- Поле ввода -->
 				<div class="row row100">
 					<input type="text" id="window" class="form-control" maxlength="12" readonly value="0">
@@ -108,8 +108,11 @@
 						</div>
 					</div>
 					
-					<div class="btnContainer"><div class="highBtn btn" id="btnTranslate"><span id="decSpan">DEC</span><br>/<br><span id="hexSpan">HEX</span></div>
+					<div class="btnContainer"><div class="highBtn btn" id="btnTranslate"><span id="decSpan">DEC</span><br>/<br><span id="hexSpan">HEX</span></div></div>
 				</div>
+			</div>
+			<div id="histDiv">
+				<p class="text-left"></p>
 			</div>
 		</div>
 	</div>

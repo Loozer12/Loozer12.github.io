@@ -4,12 +4,13 @@ body{
 }
 
 #header{
-    padding: 1em 3em;
+    padding: 0em 3em;
     background-color: dimgrey;
-    margin-bottom: 5em;
+    
 }
 #header span{
-    font-size: 1.7em;
+    font-size: x-large;
+    margin: 0.5em 0;
     font-family: Play;
     font-weight: bold;
     color: ghostwhite;
@@ -32,6 +33,8 @@ body{
 }
 
 .main{
+	height: fit-content;
+	margin-top: 5em;
 	margin-left: auto;
     margin-right: auto;
 	width: fit-content;
@@ -103,7 +106,23 @@ body{
 }
 
 #calc_cont{
-	margin: 0 0 5em 0;
+	height:100%;
+	/*margin: 0 0 5em 0;*/
 	padding: 0;
 }
 
+#btnHistory{
+	margin: 0.6em 0;
+}
+
+#histDiv{
+	padding: 1em;
+	width: fit-content;
+	background-color: white;
+	display: none;
+	overflow-y: scroll;
+}
+
+#histDiv p{
+	display: none;
+}

@@ -10,6 +10,9 @@
 	maxLen = 12;
 	memNum = "";
 	hexInput="";
+	history = [];
+	curHist = "";
+	histN2 = "";
 	
 	constructor()
 	{
@@ -327,7 +330,7 @@
 		this.methodNow = "+";
 		
 		this.numberNow = 2;
-		
+
 		setTimeout(()=>{
 			this.updateInput();
 		},100);
@@ -507,6 +510,9 @@
 		
 		this.btnPressResult();*/
 		this.result = Math.pow(this["number" + this.numberNow],1/2);
+
+		this.curHist += "sqrt_2" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -534,6 +540,9 @@
 		this.btnPressResult();*/
 
 		this.result = Math.pow(this["number" + this.numberNow],2);
+
+		this.curHist += "pow_2" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -561,6 +570,9 @@
 		this.btnPressResult();*/
 
 		this.result = Math.pow(this["number" + this.numberNow],-1);
+
+		this.curHist += "pow_-1" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -588,6 +600,9 @@
 		this.btnPressResult();*/
 
 		this.result = Math.pow(this["number" + this.numberNow],1/3);
+
+		this.curHist += "sqrt_3" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -615,6 +630,9 @@
 		
 		this.btnPressResult();*/
 		this.result = Math.sin(this["number" + this.numberNow]*Math.PI/180);
+
+		this.curHist += "sin" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -641,6 +659,9 @@
 		
 		this.btnPressResult();*/
 		this.result = Math.cos(this["number" + this.numberNow]*Math.PI/180);
+
+		this.curHist += "cos" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -667,6 +688,9 @@
 		
 		this.btnPressResult();*/
 		this.result = Math.tan(this["number" + this.numberNow]*Math.PI/180);
+
+		this.curHist += "tg" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -693,6 +717,9 @@
 		
 		this.btnPressResult();*/
 		this.result = Math.ctan(this["number" + this.numberNow]*Math.PI/180);
+
+		this.curHist += "ctg" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -719,6 +746,9 @@
 		
 		this.btnPressResult();*/
 		this.result = Math.asin(this["number" + this.numberNow]*Math.PI/180);
+
+		this.curHist += "arcsin" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -746,6 +776,9 @@
 		this.btnPressResult();*/
 
 		this.result = Math.acos(this["number" + this.numberNow]*Math.PI/180);
+
+		this.curHist += "arccos" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -773,6 +806,9 @@
 		this.btnPressResult();*/
 
 		this.result = Math.atan(this["number" + this.numberNow]*Math.PI/180);
+
+		this.curHist += "arctg" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -800,6 +836,9 @@
 		this.btnPressResult();*/
 
 		this.result = Math.actan(this["number" + this.numberNow]*Math.PI/180);
+
+		this.curHist += "arcctg" + " " + this["number" + this.numberNow] +  " = " + this.result + "\n";
+
 		this["number" + this.numberNow] = ""+this.result;
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -813,6 +852,10 @@
 			return console.log("Нет нужных элементов для решения");
 		
 		let tmpRes;
+
+		/*if(this.curHist == ""){
+			this.curHist = this.number1;
+		}*/
 		
 		switch(this.methodNow)
 		{
@@ -825,6 +868,13 @@
 				if(!isNaN(tmpRes))
 					this.result = tmpRes.toFixed(2);
 				else*/
+
+				/*
+				if(this.histN2=="") this.histN2 = this.number2;
+				this.curHist += " " + this.methodNow + " " + this.histN2;*/
+
+
+
 				this.result = tmpRes;
 			break;
 			
@@ -871,6 +921,11 @@
 			break;
 		}
 
+		this.curHist += this.convNotation(this.number1) + " " + this.methodNow + " " + this.convNotation(this.number2) +  " = " + this.convNotation(this.result) + "\n";
+		/*this.histN2 = "";
+		if(mode!="clear"){
+			this.curHist += " = " + this.result;
+		}*/
 
 		if(isNaN(this.result) || this.result == Infinity || Math.abs(this.result)>999999999999 || Math.abs(this.result)<0.0000000001){
 			this.isEnd = true;
@@ -977,8 +1032,35 @@
 		this.updateMemNum();
 	}
 
+	showHistory(){
+		$("#histDiv").css("height",window.innerHeight - $("#header")[0].clientHeight);
+		if(this.curHist!=""){
+			$("#histDiv p")[0].innerText = this.curHist;
+			$("#histDiv").toggle(0);
+			$("#histDiv p").toggle(0);
+		}
+		console.log(this.curHist);
+	}
+
 	isHexMethodNow(){
 		return this.methodNow=="+"||this.methodNow=="-"||this.methodNow=="*"||this.methodNow=="/";
+	}
+
+	convNotation(strNum){
+		return this.notation=="DEC"?strNum:this.toHex(strNum);
+	}
+
+	convExp(strNum){
+		let tmp;
+		if(Math.abs(+strNum)>999999999999 || Math.abs(+strNum)<0.0000000001){
+			tmp = (+strNum).toExponential();
+		}else{
+			tmp = this.noExp(+strNum);
+			if(tmp.indexOf(".")>=0){
+				tmp = this.roundNum(tmp);
+			}
+		}
+		return tmp;
 	}
 
 	toHex(strNum){
@@ -1088,9 +1170,62 @@ $( document ).keydown((e)=>{
 		break;
 		
 		case "=":
+		case "Enter":
 			Calc.btnPressResult();
+			Calc._btnAnimation("Result");
 		break;
-		
+
+		case "Escape":
+			Calc.btnPressClean();
+			Calc._btnAnimation("Clean");
+		break;
+
+		case "Delete":
+			Calc.btnPressCleanEntry();
+		break;
+
+		case "A":
+		case "a":
+		case "Ф":
+		case "ф":
+			Calc.btnPressLet("A");
+		break;
+
+		case "B":
+		case "b":
+		case "И":
+		case "и":
+			Calc.btnPressLet("B");
+		break;
+
+		case "C":
+		case "c":
+		case "С":
+		case "с":
+			Calc.btnPressLet("C");
+		break;
+
+		case "D":
+		case "d":
+		case "В":
+		case "в":
+			Calc.btnPressLet("D");
+		break;
+
+		case "E":
+		case "e":
+		case "У":
+		case "у":
+			Calc.btnPressLet("E");
+		break;
+
+		case "F":
+		case "f":
+		case "А":
+		case "а":
+			Calc.btnPressLet("F");
+		break;
+
 		default:
 			console.log(e.key);
 		break;
@@ -1245,6 +1380,10 @@ $(".btnLet").click((e)=>{
 
 $("#btnTranslate").click((e)=>{
 	Calc.btnPressTranslate();
+});
+
+$("#btnHistory").click((e)=>{
+	Calc.showHistory();
 });
 
 
