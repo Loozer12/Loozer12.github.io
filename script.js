@@ -204,8 +204,14 @@
 		//if(this.result == null)
 		//{
 		let str = this["number" + this.numberNow] + "";
-	
-		this["number" + this.numberNow] = str.substr(0, str.length - 1);
+		if(this.notation=="DEC"){
+			this["number" + this.numberNow] = str.substr(0, str.length - 1);
+		}
+		else{
+			this.hexInput = this.toHex(this["number" + this.numberNow]);
+			this.hexInput = this.hexInput.substr(0, this.hexInput.length - 1);
+			this["number" + this.numberNow] = this.toDec(this.hexInput);	
+		}
 		
 		this.updateInput();
 		/*}
