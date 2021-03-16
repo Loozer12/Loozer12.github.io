@@ -42,7 +42,8 @@
 					<div class="btnContainer"><div class="nrmBtn btn" id="btnClean">C</div></div>
 					<div class="btnContainer"><div class="nrmBtn btn" id="btnCleanEntry">CE</div></div>
 					<div class="btnContainer"><div class="nrmBtn btn" id="btnBackspace"><-</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn" id="btnSign">+/-</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn" id="btnTranslate"><span id="decSpan">10</span>/<span id="hexSpan">16</span></div></div>
+					
 				</div>
 				
 				<div class="row">
@@ -51,42 +52,46 @@
 					<div class="btnContainer"><div class="nrmBtn btn" id="btnMemory">M</div></div>
 					<div class="btnContainer"><div class="nrmBtn btn" id="btnMemoryPlus">M+</div></div>
 					<div class="btnContainer"><div class="nrmBtn btn" id="btnMemoryMinus">M-</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn" id="btnSlash">/</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn" id="btnSign">+/-</div></div>
+					
 				</div>
 
 				<div class="row">
 					<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnPowerX2">x^2</div></div>
 					<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnSqrtX2">sqrt(x,2)</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn7" data-num="7">7</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn8" data-num="8">8</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn9" data-num="9">9</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn" id="btnStar">*</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnA" data-let="A">A</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnB" data-let="B">B</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnC" data-let="C">C</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn" id="btnSlash">/</div></div>
+					
 				</div>
 
 				<div class="row">
 					<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnPowerX-1">1/x</div></div>
 					<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnSqrtX3">sqrt(x,3)</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn4" data-num="4">4</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn5" data-num="5">5</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn6" data-num="6">6</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn" id="btnMinus">-</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnD" data-let="D">D</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnE" data-let="E">E</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnF" data-let="F">F</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn" id="btnStar">*</div></div>
 				</div>
 
 				<div class="row">
 					<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnSin">sin</div></div>
 					<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnArcsin">arcsin</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn1" data-num="1">1</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn2" data-num="2">2</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn3" data-num="3">3</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn" id="btnPlus">+</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn7" data-num="7">7</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn8" data-num="8">8</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn9" data-num="9">9</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn" id="btnMinus">-</div></div>
+					
 				</div>
 
 				<div class="row">
 					<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnCos">cos</div></div>
 					<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnArccos">arccos</div></div>
-					<div class="btnContainer"><div class="wideBtn btn btnNum" id="btn0" data-num="0">0</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnComma">,</div></div>
-					<div class="btnContainer"><div class="nrmBtn btn" id="btnResult">=</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn4" data-num="4">4</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn5" data-num="5">5</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn6" data-num="6">6</div></div>
+					<div class="btnContainer"><div class="nrmBtn btn" id="btnPlus">+</div></div>
 				</div>
 
 				<div class="row">
@@ -94,21 +99,22 @@
 						<div class="row">
 							<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnTg">tg</div></div>
 							<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnArctg">arctg</div></div>
-							<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnA" data-let="A">A</div></div>
-							<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnB" data-let="B">B</div></div>
-							<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnC" data-let="C">C</div></div>
+							<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn1" data-num="1">1</div></div>
+							<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn2" data-num="2">2</div></div>
+							<div class="btnContainer"><div class="nrmBtn btn btnNum" id="btn3" data-num="3">3</div></div>
 						</div>
 						
 						<div class="row">
 							<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnCtg">ctg</div></div>
 							<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnArcctg">arcctg</div></div>
-							<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnD" data-let="D">D</div></div>
-							<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnE" data-let="E">E</div></div>
-							<div class="btnContainer"><div class="nrmBtn btn btnLet disabled" id="btnF" data-let="F">F</div></div>
+							
+							<div class="btnContainer"><div class="wideBtn btn btnNum" id="btn0" data-num="0">0</div></div>
+							<div class="btnContainer"><div class="nrmBtn btn notHex" id="btnComma">,</div></div>
+							
 						</div>
 					</div>
+					<div class="btnContainer"><div class="highBtn btn" id="btnResult"><br>=<br></div></div>
 					
-					<div class="btnContainer"><div class="highBtn btn" id="btnTranslate"><span id="decSpan">DEC</span><br>/<br><span id="hexSpan">HEX</span></div></div>
 				</div>
 			</div>
 			<div id="histDiv">
