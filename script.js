@@ -72,6 +72,8 @@
 		}
 
 		$("#window").val(viewNum);
+		
+		this.updateHisory();
 	}
 
 	updateMemAction(mode){
@@ -941,8 +943,6 @@
 		this.numberNow = 1;
 		this.number2 = "0";
 		this.methodNow = null;
-
-		this.updateHisory();
 
 		if(mode=="clear" && !this.isEnd){
 			//this.updateMemAction("noClear");
