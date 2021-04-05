@@ -942,6 +942,8 @@
 		this.number2 = "0";
 		this.methodNow = null;
 
+		this.updateHisory();
+
 		if(mode=="clear" && !this.isEnd){
 			//this.updateMemAction("noClear");
 		}else{
@@ -1042,11 +1044,15 @@
 	showHistory(){
 		$("#histDiv").css("height",window.innerHeight - $("#header")[0].clientHeight);
 		if(this.curHist!=""){
-			$("#histDiv p")[0].innerText = this.curHist;
+			this.updateHisory();
 			$("#histDiv").toggle(0);
 			$("#histDiv p").toggle(0);
 		}
 		console.log(this.curHist);
+	}
+
+	updateHisory(){
+		$("#histDiv p")[0].innerText = this.curHist;
 	}
 
 	isHexMethodNow(){
